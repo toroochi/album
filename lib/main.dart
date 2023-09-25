@@ -11,13 +11,13 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,//firebaseの初期化
   );
 
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { //MyAppがアプリケーション全体の定義するwidget
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   void uploadPicture() async {
     try {
-      Uint8List? uint8list = await ImagePickerWeb.getImageAsBytes();
+      Uint8List? uint8list = await ImagePickerWeb.getImageAsBytes();//画像をバイトとしてロード
       if (uint8list != null) {
         var metadata = SettableMetadata(
           contentType: "image/jpeg",
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20),
             if (imageData != null)
-              Image.memory(
+              Image.memory( //image.memoryデータを画像に変換
                 imageData!,
                 width: 300, // 画像の幅を調整
               ),
